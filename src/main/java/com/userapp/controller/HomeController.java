@@ -2,6 +2,7 @@ package com.userapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,15 +24,19 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping("/login")
+	@GetMapping("/signin")
 	public String login()
 	{
 		return "login";
 	}
 	
 	@GetMapping("/register")
-	public String register()
-	{
+	 public String register(Model model, HttpSession session) {
+        String msg = (String) session.getAttribute("msg");
+        if (msg != null) {
+            model.addAttribute("msg", msg);
+            session.removeAttribute("msg");
+        }
 		return "register";
 	}
 	
