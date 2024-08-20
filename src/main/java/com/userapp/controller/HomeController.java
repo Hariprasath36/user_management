@@ -37,10 +37,14 @@ public class HomeController {
 	public String createuser(@ModelAttribute UserDtls user)
 	{
 		
-		System.out.println(user);
+		//System.out.println(user);
+		boolean f=userService.checkEmail(user.getEmail());;
 		
-		
-		
+		if(f) {
+			System.out.println("Email id already Exists");
+		}else 
+		{
+			
 		UserDtls userDtls=userService.createUser(user);
 		
 		if(userDtls!=null) {
@@ -48,7 +52,7 @@ public class HomeController {
 		}else {
 			System.out.println("Something error in server");
 		}
-		
+		}
 		return "redirect:/register";
 	}
 

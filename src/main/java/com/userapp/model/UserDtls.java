@@ -20,12 +20,28 @@ public class UserDtls {
 	
 	private String address;
 	
+	@Override
+	public String toString() {
+		return "UserDtls [id=" + id + ", fullName=" + fullName + ", email=" + email + ", address=" + address
+				+ ", qualification=" + qualification + ", password=" + password + "]";
+	}
+
 	private String qualification;
 	
 	private String password;
 
+	public String getEmail() {
+		// TODO Auto-generated method stub
+		return email;
+	}
+
+	
+
 	
 	}
+
+	
+	
 	
 
 
