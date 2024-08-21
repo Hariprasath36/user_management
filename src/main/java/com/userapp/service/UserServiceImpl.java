@@ -1,5 +1,6 @@
 package com.userapp.service;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,10 +32,24 @@ public class UserServiceImpl implements UserService {
 		return userRepo.existsByEmail(email);
 	}
 
-	
-
-	
-	
-	
-
+	@Override
+	public void createUser(User user) {
+	    if (user.getPassword() == null || user.getPassword().isEmpty()) {
+	        throw new IllegalArgumentException("Password cannot be null or empty");
+	    }
+	    String encodedPassword = passwordEncoder.encode(user.getPassword());
+	    user.setPassword(encodedPassword);
+	    // Other logic for saving the user
+	}
 }
+
+
+	
+
+	
+
+	
+	
+	
+
+
